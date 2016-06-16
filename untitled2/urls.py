@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from news import views as news_views
+
 
 urlpatterns = [
+    url(r'^$',news_views.index,name='index'),
     url(r'^admin/', admin.site.urls),
+    url(r'column/(?P<column_slug>[^/]+)/$',news_views.column_detail,name='column'),
+    url(r'news/(?P<article_slug>[^/]+)/$',news_views.article_detail,name='article'),
 ]
